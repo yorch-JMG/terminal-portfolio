@@ -1,7 +1,7 @@
 import {NextPage} from 'next';
 import {useEffect, useState} from 'react';
 import {Terminal} from '../components/Terminal';
-import {defaultColorscheme, IColorscheme} from '../themes';
+import {defaultColorscheme} from '../themes';
 import {MatchColorScheme} from '../utils/MatchColorSchemeBg';
 
 const Home: NextPage = () => {
