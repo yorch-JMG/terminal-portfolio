@@ -5,10 +5,17 @@ interface FoundCommand {
   commandFound: boolean;
 }
 
-export const MatchInputWithCommand = (input: string): FoundCommand => {
+export const MatchInputWithCommand = (
+  input: string,
+  cmdColor: string,
+  errorColor: string,
+): FoundCommand => {
   for (let i = 0; i < AllCommands.length; i++) {
     if (AllCommands[i].name === input) {
-      return {command: AllCommands[i], commandFound: true};
+      return {
+        command: {...AllCommands[i], color: cmdColor},
+        commandFound: true,
+      };
     }
   }
   return {
@@ -19,7 +26,7 @@ export const MatchInputWithCommand = (input: string): FoundCommand => {
         'Make sure to read the output of `help`',
       ],
       args: [],
-			color: '#DD0606'
+      color: errorColor,
     },
     commandFound: false,
   };
