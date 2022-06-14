@@ -1,10 +1,12 @@
 export interface ICommand {
 	name: string;
+	info: string[];
 	args: string[];
 }
 export const AllCommands: ICommand[] = [
 	{
 		name: "help",
-		args: []
-	}
+		info: ['Help dialogue \n','Help dialogue \n','Help dialogue \n','Help dialogue \n'],
+		args: [],
+	},
 ] 

@@ -1,12 +1,17 @@
-import { ICommand } from "../../commands/AllCommands";
+import {AllCommands, ICommand} from '../../commands/AllCommands';
 
-export const MatchInputWithCommand = (AllCommands: ICommand[], input: string) => {
-	let foundCommand;
-	for(let command of AllCommands){
-		if(command.name === input){
-			foundCommand = command;
-		}
-	}
-	if(foundCommand) return foundCommand
-	return null
-}
+export const MatchInputWithCommand= (
+  input: string,
+) : ICommand => {
+	for (let i = 0; i < AllCommands.length; i++) {
+    if (AllCommands[i].name === input) {
+			console.log(input)
+      return AllCommands[i];
+    }
+  }
+  return {
+    name: `Command ${input} not found`,
+    info: ['Make sure to read the output of `help` \n'],
+    args: [],
+  };
+};

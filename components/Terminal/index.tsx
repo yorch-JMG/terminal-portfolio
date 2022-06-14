@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
+import {ICommand} from '../../commands/AllCommands';
+import {MatchInputWithCommand} from '../../utils/MatchInputWithCommand';
 
 export const Terminal: React.FC = () => {
   const [command, setCommand] = useState('');
-  const [terminalLines, setTerminalLines] = useState<string[]>([]);
+  const [terminalLines, setTerminalLines] = useState<ICommand[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommand(e.currentTarget.value);
@@ -10,7 +12,12 @@ export const Terminal: React.FC = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setTerminalLines(prevArray => [command, ...prevArray]);
+		if (command === 'clear') {
+    	setCommand('');
+			return setTerminalLines([]);
+		}
+    const commandFound = MatchInputWithCommand(command);
+    setTerminalLines(prevArray => [commandFound, ...prevArray]);
     console.log(command);
     setCommand('');
   };
@@ -19,9 +26,11 @@ export const Terminal: React.FC = () => {
     <div>
       <div className="fixed bottom-0 w-full">
         <div>
-          {terminalLines.map((line, idx) => {
-            return <div key={idx}>{line}</div>;
-          }).reverse()}
+          {terminalLines
+            .map((line, idx) => {
+              return <div key={idx}>{line.name}</div>;
+            })
+            .reverse()}
         </div>
         <form onSubmit={handleSubmit}>
           <label>art@yorchJMG: $</label>
