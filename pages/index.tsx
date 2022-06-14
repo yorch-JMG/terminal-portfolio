@@ -3,7 +3,7 @@ import { Terminal } from '../components/Terminal'
 
 const Home: NextPage = () => {
   return (
-			<div>
+			<div className='tracking-tighter'>
 				<Terminal/>
 			</div>
   )

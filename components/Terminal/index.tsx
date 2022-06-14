@@ -20,7 +20,7 @@ export const Terminal: React.FC = () => {
 
   useEffect(() => {
     if (cmdNameExists) {
-      setCmdNameExistsColor('#90922A');
+      setCmdNameExistsColor('#c9cc2b');
     } else {
       setCmdNameExistsColor('#DD0606');
     }
@@ -61,7 +61,7 @@ export const Terminal: React.FC = () => {
             .reverse()}
         </div>
         <form onSubmit={handleSubmit}>
-          <label style={{color: '#90922A'}}>art@yorchJMG: $ </label>
+          <label style={{color: '#c9cc2b'}}>art@yorchJMG: $ </label>
           <input
             onChange={handleChange}
             value={command}

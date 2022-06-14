@@ -8,7 +8,7 @@ export const TerminalLine = ({name, args, info, color}: TerminalLineProps) => {
   return (
     <div>
       <div>
-        <span style={{color: '#90922A'}}>art@yorchJMG: $ </span>
+        <span style={{color: '#c9cc2b'}}>art@yorchJMG: $ </span>
         <span style={{color: color}}>{name}</span>
       </div>
       <div>

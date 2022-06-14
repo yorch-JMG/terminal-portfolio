@@ -9,6 +9,6 @@ export const AllCommands: ICommand[] = [
 		name: "help",
 		info: ['Help dialogue','Try another command'],
 		args: ['args'],
-		color: '#90922A'
+		color:'#c9cc2b'
 	},
 ] 
