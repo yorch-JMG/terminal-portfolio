@@ -2,23 +2,24 @@ interface TerminalLineProps {
   name: string;
   args: string[];
   info: string[];
+  color: string;
 }
-export const TerminalLine = ({name, args, info}: TerminalLineProps) => {
-  console.log(name);
-  console.log(args);
-  console.log(info);
+export const TerminalLine = ({name, args, info, color}: TerminalLineProps) => {
   return (
     <div>
-      <div>art@yorchJMG: $ {name}</div>
+      <div>
+        <span style={{color: '#90922A'}}>art@yorchJMG: $ </span>
+        <span style={{color: color}}>{name}</span>
+      </div>
       <div>
         {info.map(line => (
-          <div key={name + line}>{line}</div>
+							<div key={name + line} style={{color: '#ebdbb2'}}>{line}</div>
         ))}
       </div>
       {args.length > 0 && (
         <div>
           {args.map(arg => (
-            <div key={name + arg}>{arg}</div>
+            <div key={name + arg} style={{color: '#ebdbb2'}}>{arg}</div>
           ))}
         </div>
       )}

@@ -11,7 +11,7 @@ export const Terminal: React.FC = () => {
 
   useEffect(() => {
     const enteredCmd = MatchInputWithCommand(command);
-    if (enteredCmd.commandFound) {
+    if (enteredCmd.commandFound || command === 'clear') {
       console.log(enteredCmd.commandFound);
       setCmdNameExists(true);
     } else {
@@ -22,9 +22,9 @@ export const Terminal: React.FC = () => {
 
   useEffect(() => {
     if (cmdNameExists) {
-      setCmdNameExistsColor('green');
+      setCmdNameExistsColor('#90922A');
     } else {
-      setCmdNameExistsColor('red');
+      setCmdNameExistsColor('#DD0606');
     }
   }, [cmdNameExists]);
 
@@ -56,6 +56,7 @@ export const Terminal: React.FC = () => {
                     name={line.name}
                     args={line.args}
                     info={line.info}
+                    color={line.color}
                   />
                 </div>
               );
@@ -63,12 +64,12 @@ export const Terminal: React.FC = () => {
             .reverse()}
         </div>
         <form onSubmit={handleSubmit}>
-          <label>art@yorchJMG: $ </label>
+          <label style={{color: '#90922A'}}>art@yorchJMG: $ </label>
           <input
             onChange={handleChange}
             value={command}
-            style={{color: cmdNameExistsColor}}
-            className={`caret-black caret-2 outline-0 `}
+            style={{color: cmdNameExistsColor, caretColor: '#ebdbb2'}}
+            className={`caret-black caret-2 outline-0 bg-transparent font-semibold`}
           />
         </form>
       </div>

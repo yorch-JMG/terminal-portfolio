@@ -19,6 +19,7 @@ export const MatchInputWithCommand = (input: string): FoundCommand => {
         'Make sure to read the output of `help`',
       ],
       args: [],
+			color: '#DD0606'
     },
     commandFound: false,
   };
