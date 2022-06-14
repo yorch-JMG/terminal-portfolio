@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {ICommand} from '../../commands/AllCommands';
+import {GRUVBOX} from '../../themes/gruvbox';
 import {MatchInputWithCommand} from '../../utils/MatchInputWithCommand';
 import {TerminalLine} from '../TerminalLines';
 
@@ -20,9 +21,9 @@ export const Terminal: React.FC = () => {
 
   useEffect(() => {
     if (cmdNameExists) {
-      setCmdNameExistsColor('#c9cc2b');
+      setCmdNameExistsColor(GRUVBOX.greenColor);
     } else {
-      setCmdNameExistsColor('#DD0606');
+      setCmdNameExistsColor(GRUVBOX.errorColor);
     }
   }, [cmdNameExists]);
 
@@ -43,8 +44,8 @@ export const Terminal: React.FC = () => {
 
   return (
     <div>
-      <div className="fixed bottom-0 w-full px-2 md:px-10">
-        <div>
+      <div className="fixed bottom-0 w-full">
+        <div className="px-5 md:px-10">
           {terminalLines
             .map((line, idx) => {
               return (
@@ -60,14 +61,19 @@ export const Terminal: React.FC = () => {
             })
             .reverse()}
         </div>
-        <form onSubmit={handleSubmit}>
-          <label style={{color: '#c9cc2b'}}>art@yorchJMG: $ </label>
+        <form onSubmit={handleSubmit} className="pb-8 pt-3 mt-5 shadow-lg shadow-white">
+				<div className='px-5 md:px-10'>
+          <label style={{color: GRUVBOX.greenColor}}>art@yorchJMG: $ </label>
           <input
             onChange={handleChange}
             value={command}
-            style={{color: cmdNameExistsColor, caretColor: '#ebdbb2'}}
+            style={{
+              color: cmdNameExistsColor,
+              caretColor: GRUVBOX.normalTextColor,
+            }}
             className={`caret-black caret-2 outline-0 bg-transparent font-semibold w-max lg:w-3/4`}
           />
+				</div>
         </form>
       </div>
     </div>

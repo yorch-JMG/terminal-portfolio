@@ -1,3 +1,5 @@
+import {GRUVBOX} from '../../themes/gruvbox';
+
 interface TerminalLineProps {
   name: string;
   args: string[];
@@ -8,20 +10,21 @@ export const TerminalLine = ({name, args, info, color}: TerminalLineProps) => {
   return (
     <div>
       <div>
-        <span style={{color: '#c9cc2b'}}>art@yorchJMG: $ </span>
+        <span style={{color: GRUVBOX.greenColor}}>art@yorchJMG: $ </span>
         <span style={{color: color}}>{name}</span>
       </div>
-      <div>
+      <pre>
+        {}
         {info.map(line => (
-          <div key={name + line} style={{color: '#ebdbb2'}}>
+          <div key={name + line} style={{color: GRUVBOX.normalTextColor}}>
             {line}
           </div>
         ))}
-      </div>
+      </pre>
       {args.length > 0 && (
         <div>
           {args.map(arg => (
-            <div key={name + arg} style={{color: '#ebdbb2'}}>
+            <div key={name + arg} style={{color: GRUVBOX.normalTextColor}}>
               {arg}
             </div>
           ))}
