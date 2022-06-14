@@ -12,12 +12,10 @@ export const Terminal: React.FC = () => {
   useEffect(() => {
     const enteredCmd = MatchInputWithCommand(command);
     if (enteredCmd.commandFound || command === 'clear') {
-      console.log(enteredCmd.commandFound);
       setCmdNameExists(true);
     } else {
       setCmdNameExists(false);
     }
-    console.log(cmdNameExistsColor);
   }, [command]);
 
   useEffect(() => {
@@ -40,7 +38,6 @@ export const Terminal: React.FC = () => {
     }
     const commandFound = MatchInputWithCommand(command);
     setTerminalLines(prevArray => [commandFound.command, ...prevArray]);
-    console.log(command);
     setCommand('');
   };
 
@@ -69,7 +66,7 @@ export const Terminal: React.FC = () => {
             onChange={handleChange}
             value={command}
             style={{color: cmdNameExistsColor, caretColor: '#ebdbb2'}}
-            className={`caret-black caret-2 outline-0 bg-transparent font-semibold`}
+            className={`caret-black caret-2 outline-0 bg-transparent font-semibold w-max lg:w-3/4`}
           />
         </form>
       </div>

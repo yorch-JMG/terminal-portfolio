@@ -13,13 +13,17 @@ export const TerminalLine = ({name, args, info, color}: TerminalLineProps) => {
       </div>
       <div>
         {info.map(line => (
-							<div key={name + line} style={{color: '#ebdbb2'}}>{line}</div>
+          <div key={name + line} style={{color: '#ebdbb2'}}>
+            {line}
+          </div>
         ))}
       </div>
       {args.length > 0 && (
         <div>
           {args.map(arg => (
-            <div key={name + arg} style={{color: '#ebdbb2'}}>{arg}</div>
+            <div key={name + arg} style={{color: '#ebdbb2'}}>
+              {arg}
+            </div>
           ))}
         </div>
       )}
