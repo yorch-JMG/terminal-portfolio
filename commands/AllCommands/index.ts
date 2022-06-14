@@ -6,7 +6,7 @@ export interface ICommand {
 export const AllCommands: ICommand[] = [
 	{
 		name: "help",
-		info: ['Help dialogue \n','Help dialogue \n','Help dialogue \n','Help dialogue \n'],
-		args: [],
+		info: ['Help dialogue','Try another command'],
+		args: ['args'],
 	},
 ] 
