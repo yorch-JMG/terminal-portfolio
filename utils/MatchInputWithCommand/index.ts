@@ -1,4 +1,5 @@
 import {AllCommands, ICommand} from '../../commands/AllCommands';
+import { IColorscheme } from '../../themes';
 
 interface FoundCommand {
   command: ICommand;
@@ -7,13 +8,12 @@ interface FoundCommand {
 
 export const MatchInputWithCommand = (
   input: string,
-  cmdColor: string,
-  errorColor: string,
+	theme: IColorscheme
 ): FoundCommand => {
   for (let i = 0; i < AllCommands.length; i++) {
     if (AllCommands[i].name === input) {
       return {
-        command: {...AllCommands[i], color: cmdColor},
+        command: {...AllCommands[i], color: theme.cmdColor},
         commandFound: true,
       };
     }
@@ -26,7 +26,7 @@ export const MatchInputWithCommand = (
         'Make sure to read the output of `help`',
       ],
       args: [],
-      color: errorColor,
+      color: theme.errorColor,
     },
     commandFound: false,
   };

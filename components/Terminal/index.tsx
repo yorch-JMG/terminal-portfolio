@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {ICommand} from '../../commands/AllCommands';
+import {useCmdNameExists} from '../../hooks/UseCmdNameExists';
 import {IColorscheme} from '../../themes';
 import {MatchInputWithCommand} from '../../utils/MatchInputWithCommand';
 import {TerminalLine} from '../TerminalLines';
@@ -9,25 +10,7 @@ interface ITerminalProps {
 export const Terminal: React.FC<ITerminalProps> = ({theme}: ITerminalProps) => {
   const [command, setCommand] = useState('');
   const [terminalLines, setTerminalLines] = useState<ICommand[]>([]);
-  const [cmdNameExists, setCmdNameExists] = useState(false);
-  const [cmdNameExistsColor, setCmdNameExistsColor] = useState('red');
-
-  useEffect(() => {
-    const enteredCmd = MatchInputWithCommand(command, cmdNameExistsColor, theme.errorColor);
-    if (enteredCmd.commandFound || command === 'clear') {
-      setCmdNameExists(true);
-    } else {
-      setCmdNameExists(false);
-    }
-  }, [command]);
-
-  useEffect(() => {
-    if (cmdNameExists) {
-      setCmdNameExistsColor(theme.cmdColor);
-    } else {
-      setCmdNameExistsColor(theme.errorColor);
-    }
-  }, [cmdNameExists]);
+  const {commandExists, commandColor} = useCmdNameExists(command, theme);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommand(e.currentTarget.value);
@@ -39,7 +22,7 @@ export const Terminal: React.FC<ITerminalProps> = ({theme}: ITerminalProps) => {
       setCommand('');
       return setTerminalLines([]);
     }
-    const commandFound = MatchInputWithCommand(command, cmdNameExistsColor, theme.errorColor);
+    const commandFound = MatchInputWithCommand(command, theme);
     setTerminalLines(prevArray => [commandFound.command, ...prevArray]);
     setCommand('');
   };
@@ -73,7 +56,7 @@ export const Terminal: React.FC<ITerminalProps> = ({theme}: ITerminalProps) => {
               onChange={handleChange}
               value={command}
               style={{
-                color: cmdNameExistsColor,
+                color: commandColor,
                 caretColor: theme.normalTextColor,
               }}
               className={`caret-black caret-2 outline-0 bg-transparent font-semibold w-max lg:w-3/4`}
