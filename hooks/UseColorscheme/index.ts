@@ -8,7 +8,6 @@ export const useColorscheme = (colorschemeName: string) => {
   useEffect(() => {
     const matchingTheme = MatchColorScheme(colorschemeName);
     setColorscheme(matchingTheme);
-    console.log(colorschemeName);
   }, [colorschemeName]);
 
   return colorscheme;
