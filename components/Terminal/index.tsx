@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {ICommand} from '../../commands/AllCommands';
 import {useCmdNameExists} from '../../hooks/UseCmdNameExists';
 import {IColorscheme} from '../../themes';
@@ -39,7 +39,6 @@ export const Terminal: React.FC<ITerminalProps> = ({theme}: ITerminalProps) => {
                     name={line.name}
                     args={line.args}
                     info={line.info}
-                    color={line.color}
                     theme={theme}
                   />
                 </div>

@@ -1,19 +1,14 @@
 import {NextPage} from 'next';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {Terminal} from '../components/Terminal';
-import {defaultColorscheme} from '../themes';
-import {MatchColorScheme} from '../utils/MatchColorSchemeBg';
+import {useColorscheme} from '../hooks/UseColorscheme';
 
 const Home: NextPage = () => {
   const [selectedColorscheme, setSelectedColorscheme] = useState(
     'gruvbox-dark',
   );
-  const [colorscheme, setColorscheme] = useState(defaultColorscheme);
-  useEffect(() => {
-    const matchingTheme = MatchColorScheme(selectedColorscheme);
-    setColorscheme(matchingTheme);
-    console.log(selectedColorscheme);
-  }, [selectedColorscheme]);
+  const colorscheme = useColorscheme(selectedColorscheme);
+
   return (
     <div
       className="tracking-tighter h-screen"

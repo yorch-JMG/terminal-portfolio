@@ -2,13 +2,16 @@ import {useEffect, useState} from 'react';
 import {IColorscheme} from '../../themes';
 import {MatchInputWithCommand} from '../../utils/MatchInputWithCommand';
 import {useCmdNameExistsColor} from '../UseCmdNameExistsColor';
+import {useCurrentTheme} from '../UseCurrentTheme';
 
 export const useCmdNameExists = (command: string, theme: IColorscheme) => {
   const [commandExists, setCommandExists] = useState(false);
-  const commandColor = useCmdNameExistsColor(commandExists, theme);
+  const currentTheme = useCurrentTheme(theme);
+  const commandColor = useCmdNameExistsColor(commandExists, currentTheme);
 
   useEffect(() => {
-    const enteredCmd = MatchInputWithCommand(command, theme);
+    console.log(currentTheme);
+    const enteredCmd = MatchInputWithCommand(command, currentTheme);
     if (enteredCmd.commandFound || command === 'clear') {
       setCommandExists(true);
     } else {
